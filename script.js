@@ -47,7 +47,7 @@ function showCalculation() {
     display.textContent = operate(operand1, operatorSymbol, operand2).toString();
 }
 
-function resetCalculator(){
+function resetCalculator() {
     operand1 = null;
     operand2 = null;
     operatorSymbol = null;
@@ -86,22 +86,32 @@ function operate(a, operator, b) {
     }
 }
 
-for (let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener('click', () => {
-        handleNumberInput(numbers[i].textContent);
+function numberEventListeners() {
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener('click', () => {
+            handleNumberInput(numbers[i].textContent);
+        });
+    }
+}
+
+function operatorEventListeners() {
+    for (let i = 0; i < operators.length; i++) {
+        operators[i].addEventListener('click', () => {
+            handleOperatorInput(operators[i]);
+        });
+    }
+}
+
+function setEventListeners() {
+    numberEventListeners();
+    operatorEventListeners();
+    equalsSign.addEventListener('click', () => {
+        showCalculation();
+    });
+
+    clearSign.addEventListener('click', () => {
+        resetCalculator();
     });
 }
 
-for (let i = 0; i < operators.length; i++) {
-    operators[i].addEventListener('click', () => {
-        handleOperatorInput(operators[i]);
-    });
-}
-
-clearSign.addEventListener('click', () => {
-    resetCalculator();
-});
-
-equalsSign.addEventListener('click', () => {
-    showCalculation();
-});
+setEventListeners();
