@@ -160,7 +160,8 @@ function roundAccurately(num, places) {
 function numberEventListeners() {
     for (let i = 0; i < numbers.length; i++) {
         numbers[i].addEventListener('click', () => {
-            handleNumberInput(numbers[i].textContent);
+            handleNumberInput(numbers[i].value);
+            updateDisplay();
         });
     }
 }
