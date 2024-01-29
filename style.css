@@ -1,68 +1,68 @@
 .container {
-    display: flex;
+  display: flex;
 }
 
 .calculator {
-    width: 500px;
-    height: 800px;
-    border: solid black 2px;
+  width: 500px;
+  height: 800px;
+  border: solid black 2px;
 }
 
 .display {
-    width: 456px;
-    height: 200px;
-    border: solid orange 2px;
-    margin: 20px;
-    font-size: 100px;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    flex-wrap: wrap;
+  width: 456px;
+  height: 200px;
+  border: solid orange 2px;
+  margin: 20px;
+  font-size: 100px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-wrap: wrap;
 }
 
 .bottom {
-    width: 456px;
-    height: 500px;
-    /* border: solid blue 2px; */
-    margin: 20px;
-    gap: 20px;
+  width: 456px;
+  height: 500px;
+  /* border: solid blue 2px; */
+  margin: 20px;
+  gap: 20px;
 }
 
 .digits {
-    /* px value is determined by the (border-width * 2) - container height */
-    width: 224px;
-    /* px value is determined by the (border-width * 2) - container width */
-    height: 412px; 
-    /* border: solid navy 1px; */
-    display: flex;
-    flex-grow: 2;
+  /* px value is determined by the (border-width * 2) - container height */
+  width: 224px;
+  /* px value is determined by the (border-width * 2) - container width */
+  height: 412px;
+  /* border: solid navy 1px; */
+  display: flex;
+  flex-grow: 2;
 }
 
 .row {
-    gap: 13px;
+  gap: 13px;
 }
 
 .button {
-    width: 100px;
-    height: 100px;
-    font-size: 50px;
-    border: solid lightblue 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100px;
+  height: 100px;
+  font-size: 50px;
+  border: solid lightblue 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .big {
-    width: 215px;
+  width: 215px;
 }
 
 .operators {
-    width: 100px;
-    height: 412px;
-    /* border: solid red 1px; */
+  width: 100px;
+  height: 412px;
+  /* border: solid red 1px; */
 }
 
 /* Flex styles */
 .column {
-    flex-direction: column;
+  flex-direction: column;
 }

@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project: Calculator!</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="calculator container column">
-        <div class="container top">
-            <div class="display">0</div>
+      <div class="container top">
+        <div class="display">0</div>
+      </div>
+      <div class="container bottom">
+        <div class="digits column">
+          <div class="container row first">
+            <div class="button number seven" value="7">7</div>
+            <div class="button number eight" value="8">8</div>
+            <div class="button number nine" value="9">9</div>
+          </div>
+          <div class="container row second">
+            <div class="button number four" value="4">4</div>
+            <div class="button number five" value="5">5</div>
+            <div class="button number six" value="6">6</div>
+          </div>
+          <div class="container row third">
+            <div class="button number one" value="1">1</div>
+            <div class="button number two" value="2">2</div>
+            <div class="button number three" value="3">3</div>
+          </div>
+          <div class="container row fourth">
+            <div class="button number zero" value="7">0</div>
+            <div class="button period">.</div>
+            <div class="button equals">=</div>
+          </div>
+          <div class="container row fifth"></div>
         </div>
-        <div class="container bottom">
-            <div class="digits column">
-                <div class="container row first">
-                    <div class="button number seven" value="7">7</div>
-                    <div class="button number eight" value="8">8</div>
-                    <div class="button number nine" value="9">9</div>
-                </div>
-                <div class="container row second">
-                    <div class="button number four" value="4">4</div>
-                    <div class="button number five" value="5">5</div>
-                    <div class="button number six" value="6">6</div>
-                </div>
-                <div class="container row third">
-                    <div class="button number one" value="1">1</div>
-                    <div class="button number two" value="2">2</div>
-                    <div class="button number three" value="3">3</div>
-                </div>
-                <div class="container row fourth">
-                    <div class="button number zero" value="7">0</div>
-                    <div class="button period">.</div>
-                    <div class="button equals">=</div>
-                </div>
-                <div class="container row fifth">
-                    
-                </div>
-            </div>
-            <div class="operations">
-                <div class="button operator multiply">x</div>
-                <div class="button operator divide">/</div>
-                <div class="button operator subtract">-</div>
-                <div class="button operator add">+</div>
-                <div class="button clear">C</div>
-            </div>
+        <div class="operations">
+          <div class="button operator multiply">x</div>
+          <div class="button operator divide">/</div>
+          <div class="button operator subtract">-</div>
+          <div class="button operator add">+</div>
+          <div class="button clear">C</div>
         </div>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
