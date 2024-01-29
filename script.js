@@ -5,15 +5,16 @@
 // 4) Create divide function
 
 // Element variables
-const display = document.querySelector(".display");
-const numbers = document.getElementsByClassName("number");
-const operators = document.getElementsByClassName("operator");
-const multiplicationSymbol = document.querySelector(".multiply");
-const divisionSymbol = document.querySelector(".divide");
-const subtractionSymbol = document.querySelector(".subtract");
-const additionSymbol = document.querySelector(".add");
-const equalsSign = document.querySelector(".equals");
-const clearSign = document.querySelector(".clear");
+
+const buttons = document.querySelectorAll(".button");
+// const numbers = document.getElementsByClassName("number");
+// const operators = document.getElementsByClassName("operator");
+// const multiplicationSymbol = document.querySelector(".multiply");
+// const divisionSymbol = document.querySelector(".divide");
+// const subtractionSymbol = document.querySelector(".subtract");
+// const additionSymbol = document.querySelector(".add");
+// const equalsSign = document.querySelector(".equals");
+// const clearSign = document.querySelector(".clear");
 
 // Variables
 let operand1 = null;
@@ -25,13 +26,45 @@ let result = 0;
 let displayValue = "0";
 
 function updateDisplay() {
-  display.textContent = displayValue;
+  // display.textContent = displayValue;
+  const display = document.querySelector(".display");
+  display.innerText = displayValue;
   if (displayValue.length > 9) {
     display.textContent = displayValue.substring(0, 9);
   }
 }
 
 updateDisplay();
+
+function setButtonEventListeners() {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", () => {
+      if (buttons[i].classList.contains("number")) {
+        handleNumberInput(buttons[i].textContent);
+        updateDisplay();
+      } else if (buttons[i].classList.contains("operator")) {
+        handleOperatorInput(buttons[i].textContent);
+      } else if (buttons[i].classList.contains("clear")) {
+        resetCalculator();
+        updateDisplay();
+      } else if (buttons[i].classList.contains("equals")) {
+        showCalculation();
+        updateDisplay();
+      }
+    });
+  }
+  // numberEventListeners();
+  // operatorEventListeners();
+  // equalsSign.addEventListener("click", () => {
+  //   showCalculation();
+  // });
+
+  // clearSign.addEventListener("click", () => {
+  //   resetCalculator();
+  // });
+}
+
+setButtonEventListeners();
 
 function handleNumberInput(number) {
   // if (display.textContent === '0') {
@@ -64,22 +97,6 @@ function handleOperatorInput(operator) {
   // After the result is shown, when the user clicks on the numbers, it should erase the result and display a new number
   // Then, after clicking an operator symbol again, the result should show up again on the display. It becomes operand1 again and operand 2 is 0.
   // Rinse and repeat
-
-  // if (operand1 && operand2) {
-  //     result = operate(operand1, operatorSymbol, operand2);
-  // } else if (!operand1 && !operand2) {
-  //     operand1 = +displayValue;
-  //     display.textContent = '0';
-  // } else if (operand1 && !operand2) {
-  //     operand2 = +displayValue;
-  //     result = operate(operand1, operatorSymbol, operand2);
-  //     display.textContent = result;
-
-  //     // Operand1 takes the value of result after calculations
-  //     operand1 = result;
-  //     // Operand2 becomes 0 again
-  //     operand2 = 0;
-  // }
   if (operator1 != null && operator2 === null) {
     //4th click - handles input of second operator
     operator2 = operator;
@@ -88,6 +105,7 @@ function handleOperatorInput(operator) {
     displayValue = roundAccurately(result, 15).toString();
     operand1 = displayValue;
     result = null;
+    updateDisplay();
   } else if (operator1 != null && operator2 != null) {
     //6th click - new operator2
     operand2 = displayValue;
@@ -96,6 +114,7 @@ function handleOperatorInput(operator) {
     displayValue = roundAccurately(result, 15).toString();
     operand1 = displayValue;
     result = null;
+    updateDisplay();
   } else {
     //2nd click - handles first operator input
     operator1 = operator;
@@ -104,18 +123,46 @@ function handleOperatorInput(operator) {
 }
 
 function showCalculation() {
-  operand2 = +display.textContent;
-  display.textContent = operate(operand1, operatorSymbol, operand2).toString();
-  operand1 = +display.textContent;
-  // operand2 = null;
+  // If there's no operand1 stored and equals is clicked, do nothing
+  if (operator1 === null) {
+    displayValue = displayValue;
+  } else if (operator2 !== null) {
+    // After multiple operations
+    operand2 = displayValue;
+    result = operate(Number(operand1), Number(operand2), operator2);
+    if (result === "wat") {
+      displayValue = "wtf";
+    } else {
+      displayValue = roundAccurately(result, 15).toString();
+      operand1 = displayValue;
+      operand2 = null;
+      operator1 = null;
+      operator2 = null;
+      result = null;
+    }
+  } else {
+    // After first operation
+    operand2 = displayValue;
+    result = operate(Number(operand1), Number(operand2), operator1);
+    if (result === "wat") {
+      displayValue = "wtf";
+    } else {
+      displayValue = roundAccurately(result, 15).toString();
+      operand1 = displayValue;
+      operand2 = null;
+      operator1 = null;
+      operator2 = null;
+      result = null;
+    }
+  }
 }
 
 function resetCalculator() {
-  operand1 = 0;
-  operand2 = 0;
+  operand1 = null;
+  operand2 = null;
   operatorSymbol = null;
-  displayValue = null;
-  display.textContent = 0;
+  displayValue = "0";
+  // display.textContent = 0;
 }
 
 // function add(a, b) {
@@ -156,33 +203,20 @@ function roundAccurately(num, places) {
   return parseFloat(Math.round(num + "e" + places) + "e-" + places);
 }
 
-function numberEventListeners() {
-  for (let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener("click", () => {
-      handleNumberInput(numbers[i].value);
-      updateDisplay();
-    });
-  }
-}
+// function numberEventListeners() {
+//   for (let i = 0; i < numbers.length; i++) {
+//     numbers[i].addEventListener("click", () => {
+//       // Value only works with buttons but I'm using divs
+//       handleNumberInput(numbers[i].textContent);
+//       updateDisplay();
+//     });
+//   }
+// }
 
-function operatorEventListeners() {
-  for (let i = 0; i < operators.length; i++) {
-    operators[i].addEventListener("click", () => {
-      handleOperatorInput(operators[i]);
-    });
-  }
-}
-
-function setEventListeners() {
-  numberEventListeners();
-  operatorEventListeners();
-  equalsSign.addEventListener("click", () => {
-    showCalculation();
-  });
-
-  clearSign.addEventListener("click", () => {
-    resetCalculator();
-  });
-}
-
-setEventListeners();
+// function operatorEventListeners() {
+//   for (let i = 0; i < operators.length; i++) {
+//     operators[i].addEventListener("click", () => {
+//       handleOperatorInput(operators[i].textContent);
+//     });
+//   }
+// }
