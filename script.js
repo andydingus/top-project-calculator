@@ -50,6 +50,15 @@ function setButtonEventListeners() {
       } else if (buttons[i].classList.contains("equals")) {
         showCalculation();
         updateDisplay();
+      } else if (buttons[i].classList.contains("sign")) {
+        changeSign();
+        updateDisplay();
+      } else if (buttons[i].classList.contains("percent")) {
+        divideBy100();
+        updateDisplay();
+      } else if (buttons[i].classList.contains("decimal")) {
+        addDecimal();
+        updateDisplay();
       }
     });
   }
@@ -157,6 +166,21 @@ function showCalculation() {
   }
 }
 
+function changeSign() {
+  displayValue = -displayValue;
+}
+
+function divideBy100() {
+  displayValue /= 100;
+}
+
+function addDecimal() {
+  if (displayValue.includes(".")) {
+    displayValue = displayValue;
+  } else {
+    displayValue += ".";
+  }
+}
 function resetCalculator() {
   operand1 = null;
   operand2 = null;
