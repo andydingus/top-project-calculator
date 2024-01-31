@@ -246,7 +246,7 @@ function showCalculation() {
     // After multiple operations
     operand2 = displayValue;
     result = operate(Number(operand1), Number(operand2), operator2);
-    if (result === "wat") {
+    if (result === "wtf") {
       displayValue = "wtf";
     } else {
       displayValue = roundAccurately(result, 15).toString();
@@ -260,7 +260,7 @@ function showCalculation() {
     // After first operation
     operand2 = displayValue;
     result = operate(Number(operand1), Number(operand2), operator1);
-    if (result === "wat") {
+    if (result === "wtf") {
       displayValue = "wtf";
     } else {
       displayValue = roundAccurately(result, 15).toString();
@@ -274,11 +274,11 @@ function showCalculation() {
 }
 
 function changeSign() {
-  displayValue = -displayValue;
+  displayValue = -roundAccurately(displayValue, 15).toString();
 }
 
 function divideBy100() {
-  displayValue /= 100;
+  displayValue = roundAccurately(displayValue / 100, 15).toString();
 }
 
 function addDecimal() {
@@ -324,7 +324,7 @@ function operate(a, b, operator) {
     return a * b;
   } else {
     if (b === 0) {
-      return "wat";
+      return "wtf";
     }
     return a / b;
   }
