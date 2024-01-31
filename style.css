@@ -1,3 +1,10 @@
+body {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Public Sans", sans-serif;
+}
+
 .container {
   display: flex;
 }
@@ -6,18 +13,21 @@
   width: 500px;
   height: 800px;
   border: solid black 2px;
+  background-color: #1c1f33;
 }
 
 .display {
   width: 456px;
   height: 200px;
-  border: solid orange 2px;
+  border: solid #9b7874 2px;
   margin: 20px;
   font-size: 100px;
   display: flex;
   justify-content: end;
   align-items: end;
   flex-wrap: wrap;
+  font-family: "digital";
+  background-color: #d33e43;
 }
 
 .bottom {
@@ -25,44 +35,60 @@
   height: 500px;
   /* border: solid blue 2px; */
   margin: 20px;
+  flex-direction: column;
 }
 
-.digits {
-  /* px value is determined by the (border-width * 2) - container height */
-  width: 224px;
-  /* px value is determined by the (border-width * 2) - container width */
-  height: 412px;
-  /* border: solid navy 1px; */
-  display: flex;
-  flex-grow: 2;
+.row {
+  width: 460px;
 }
 
+/* Button styles */
 .button {
-  width: 111px;
+  width: 113px;
   height: 100px;
   font-size: 50px;
-  border: solid lightblue 1px;
+  border: solid #9b7874 1px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-color: #666370;
 }
 
+.button:hover {
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  opacity: 0.8;
+}
+
+.clear {
+  background-color: #ff220c;
+}
+
+/* .clear:hover {
+  background-color: #cf0808;
+} */
+
 .button.zero {
-  width: 224px;
+  width: 228px;
 }
 
 .big {
   width: 215px;
 }
 
-.operators {
-  width: 100px;
-  height: 412px;
+.operator {
+  background-color: #d33e43;
   /* border: solid red 1px; */
 }
 
 /* Flex styles */
 .column {
   flex-direction: column;
+}
+
+/* Custom fonts */
+@font-face {
+  font-family: "digital";
+  src: url("fonts/digital-7.regular.ttf");
 }

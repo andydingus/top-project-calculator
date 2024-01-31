@@ -7,6 +7,7 @@
 // Element variables
 
 const buttons = document.querySelectorAll(".button");
+const display = document.querySelector(".display");
 // const numbers = document.getElementsByClassName("number");
 // const operators = document.getElementsByClassName("operator");
 // const multiplicationSymbol = document.querySelector(".multiply");
@@ -25,10 +26,117 @@ let operatorSymbol;
 let result = 0;
 let displayValue = "0";
 
+// Keyboard functionality
+document.addEventListener("keyup", runKeyboardMethods);
+
+function runKeyboardMethods(e) {
+  switch (e.key) {
+    case "Backspace":
+      // console.log("Backspace pressed!");
+      display.textContent = display.textContent.slice(
+        0,
+        display.textContent.length - 1
+      );
+      displayValue = display.textContent;
+      break;
+    case "0":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        break;
+      } else {
+        display.textContent += 0;
+        displayValue = display.textContent;
+      }
+      break;
+    case "1":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 1;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 1;
+        displayValue = display.textContent;
+      }
+      break;
+    case "2":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 2;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 2;
+        displayValue = display.textContent;
+      }
+      break;
+    case "3":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 3;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 3;
+        displayValue = display.textContent;
+      }
+      break;
+    case "4":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 4;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 4;
+        displayValue = display.textContent;
+      }
+      break;
+    case "5":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 5;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 5;
+        displayValue = display.textContent;
+      }
+      break;
+    case "6":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 6;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 6;
+        displayValue = display.textContent;
+      }
+      break;
+    case "7":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 7;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 7;
+        displayValue = display.textContent;
+      }
+      break;
+    case "8":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 8;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 8;
+        displayValue = display.textContent;
+      }
+      break;
+    case "9":
+      if (display.textContent.length === 1 && display.textContent === "0") {
+        display.textContent = 9;
+        displayValue = display.textContent;
+      } else {
+        display.textContent += 9;
+        displayValue = display.textContent;
+      }
+      break;
+    default:
+      console.log("Something else was pressed");
+      break;
+  }
+}
+
 function updateDisplay() {
   // display.textContent = displayValue;
-  const display = document.querySelector(".display");
-  display.innerText = displayValue;
+  display.textContent = displayValue;
   if (displayValue.length > 9) {
     display.textContent = displayValue.substring(0, 9);
   }
@@ -37,43 +145,42 @@ function updateDisplay() {
 updateDisplay();
 
 function setButtonEventListeners() {
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", () => {
-      if (buttons[i].classList.contains("number")) {
-        handleNumberInput(buttons[i].textContent);
-        updateDisplay();
-      } else if (buttons[i].classList.contains("operator")) {
-        handleOperatorInput(buttons[i].textContent);
-      } else if (buttons[i].classList.contains("clear")) {
-        resetCalculator();
-        updateDisplay();
-      } else if (buttons[i].classList.contains("equals")) {
-        showCalculation();
-        updateDisplay();
-      } else if (buttons[i].classList.contains("sign")) {
-        changeSign();
-        updateDisplay();
-      } else if (buttons[i].classList.contains("percent")) {
-        divideBy100();
-        updateDisplay();
-      } else if (buttons[i].classList.contains("decimal")) {
-        addDecimal();
-        updateDisplay();
-      }
-    });
-  }
-  // numberEventListeners();
-  // operatorEventListeners();
-  // equalsSign.addEventListener("click", () => {
-  //   showCalculation();
-  // });
-
-  // clearSign.addEventListener("click", () => {
-  //   resetCalculator();
-  // });
+  buttons.forEach((button) => {
+    button.addEventListener("click", () =>
+      handleButtonClick(button.textContent)
+    );
+  });
 }
+// numberEventListeners();
+// operatorEventListeners();
+// equalsSign.addEventListener("click", () => {
+//   showCalculation();
+// });
+
+// clearSign.addEventListener("click", () => {
+//   resetCalculator();
+// });
 
 setButtonEventListeners();
+
+function handleButtonClick(value) {
+  if (value >= "0" && value <= "9") {
+    handleNumberInput(value);
+  } else if (["+", "-", "x", "/"].includes(value)) {
+    handleOperatorInput(value);
+  } else if (value === "=") {
+    showCalculation();
+  } else if (value === "+/-") {
+    changeSign();
+  } else if (value === "%") {
+    divideBy100();
+  } else if (value === ".") {
+    addDecimal();
+  } else if (value === "AC") {
+    resetCalculator();
+  }
+  updateDisplay();
+}
 
 function handleNumberInput(number) {
   // if (display.textContent === '0') {
